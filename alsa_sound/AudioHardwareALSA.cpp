@@ -609,7 +609,7 @@ status_t AudioHardwareALSA::setParameters(const String8& keyValuePairs)
                 0 == strncmp("fluence", mFluenceKey, sizeof("fluence"))) {
                 mDevSettingsFlag |= DMIC_FLAG;
                 mDevSettingsFlag &= (~QMIC_FLAG);
-                ALOGV("Fluence dualmic feature Enabled");
+                ALOGV("Fluence dualmic feature Disabled");
             }
         } else if (value == "none") {
             mDevSettingsFlag &= (~DMIC_FLAG);
