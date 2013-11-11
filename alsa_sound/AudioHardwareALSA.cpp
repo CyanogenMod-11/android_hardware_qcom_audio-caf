@@ -609,7 +609,7 @@ status_t AudioHardwareALSA::setParameters(const String8& keyValuePairs)
                 0 == strncmp("fluence", mFluenceKey, sizeof("fluence"))) {
                 mDevSettingsFlag |= DMIC_FLAG;
                 mDevSettingsFlag &= (~QMIC_FLAG);
-                ALOGV("Fluence dualmic feature Disabled");
+                ALOGV("Fluence dualmic feature Enabled");
             }
         } else if (value == "none") {
             mDevSettingsFlag &= (~DMIC_FLAG);
@@ -836,7 +836,7 @@ String8 AudioHardwareALSA::getParameters(const String8& keys)
         param.add(key, value);
     }
 
-#ifdef QCOM_FM_ENABLED
+#if 0
 
     key = String8(AudioParameter::keyHandleA2dpDevice);
     if ( param.get(key,value) == NO_ERROR ) {
@@ -1196,7 +1196,7 @@ AudioHardwareALSA::openOutputStream(uint32_t devices,
          devices, *channels, *sampleRate, flags);
 
     status_t err = BAD_VALUE;
-#ifdef QCOM_OUTPUT_FLAGS_ENABLED
+#ifdef QCOM_TUNNEL_LPA_ENABLED
     if (flags & (AUDIO_OUTPUT_FLAG_LPA | AUDIO_OUTPUT_FLAG_TUNNEL)) {
         int type = !(flags & AUDIO_OUTPUT_FLAG_LPA); //0 for LPA, 1 for tunnel
         AudioSessionOutALSA *out = new AudioSessionOutALSA(this, devices, *format, *channels,
